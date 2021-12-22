@@ -26,6 +26,7 @@ class Core:
     def __init__(self):
         self.genses = []
         self.last_gens_id = 0
+        self.total_sell = 0
 
     def add_gens(self, name, price, info):
         self.last_gens_id += 1
@@ -34,3 +35,9 @@ class Core:
 
     def get_gens(self):
         return self.genses
+
+    def sell(self, _id, amount):
+        for gens in self.genses:
+            if gens.id == _id:
+                gens.sell(amount)
+                self.total_sell += gens.price * amount
